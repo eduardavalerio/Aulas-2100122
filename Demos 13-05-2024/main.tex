@@ -1,0 +1,94 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[right=2cm, bottom=2cm, top=3cm, left=3cm]{geometry}
+
+\title{2100122 - Oceanografia Integrativa I\\
+Aula Correlação e Tendência}
+\author{Eduarda  Valério de Jesus}
+\date{May 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Covariância}
+A covariância é uma medida estatística onde é possível comparar duas variáveis, permitindo entender como elas se relacionam entre si. 
+\begin{equation}
+    C_{xy} = \langle x'y' \rangle
+\end{equation}
+
+Sabendo que $\langle x \rangle$ é dado por: 
+\begin{equation}
+    \langle x \rangle = \frac{1}{N}\sum_{i=1}^{N}(x) \label{2}
+\end{equation}
+A equação (\ref{2}) é a chamada média amostral.\\
+Ainda sim, temos que $x' = x - \langle x \rangle$, igualmente para y', $y' = x - \langle y \rangle$.
+\newline
+\\
+A covariância entre a mesma amostra resulta na \textbf{variância}.
+\begin{equation}
+    C_{xx} = \langle x'^2 \rangle = \langle (x_i - \langle x \rangle)^2\rangle = \frac{1}{N}\sum_{i=1}^{N} (x_i - \langle x \rangle)^2
+\end{equation}
+
+\section{Coeficiênte de correlação}
+O coeficiente de correlação varia entre 1 e -1 e mede o grau de relação entre duas séries temporais, é representado por:
+\begin{equation}
+    \rho_{xy} = \frac{\langle x'y' \rangle}{\sqrt{\langle x'^2 \rangle \langle y'^2 \rangle}}
+\end{equation}
+\begin{equation}
+    \rho_{yx} = \frac{\langle x'y' \rangle}{\sqrt{\langle y'^2 \rangle \langle x'^2 \rangle}}
+\end{equation}
+\\
+$\rho$ = 1: Correlação perfeita\\
+$\rho$ = -1: Anticorrelação, as séries são espelhadas
+
+\newpage
+\section{Relação linear}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=7cm]{1200px-LinearRegression.svg.png}
+    \caption{representação gráfica de relação linear}
+    \label{fig:representação gráfica de relação linear}
+\end{figure}
+
+A reta de regressão representa o modelo, onde a correlação é perfeita ($\rho = 1$). A equação do modelo é dada por, $\hat{y}' = \alpha x'$. \\
+\\
+A partir do \textbf{ERRO MÉDIO QUADRÁTICO} podemos minimizar a diferença entre o modelo e a correlação com os valores oferecidos. O erro médio quadrático é calculado por (\ref{6}).
+\begin{equation}
+    E = \langle (y'-\hat{y}')^2 \rangle \label{6}
+\end{equation}
+Manipulando a equação (\ref{6}) chegamos em:
+\begin{equation}
+    E = \langle(y')^2 \rangle - 2\alpha \langle y'x' \rangle + \alpha^2 \langle (x')^2 \rangle \label{7}
+\end{equation}
+A partir de (\ref{7}) devemos encontrar o valor de alfa que minimiza o erro. Para isso igualamos a derivada do erro médio quadratico a 0. 
+
+\begin{equation}
+    \frac{\partial{E}}{\partial{\alpha}} = 0
+\end{equation}
+\begin{equation}
+    \frac{\partial}{\partial{\alpha}}\langle y'^2 \rangle - \frac{\partial}{\partial{\alpha}}(2\alpha \langle x'y' \rangle) + \frac{\partial}{\partial{\alpha}}(\alpha^2 \langle x'^2 \rangle) = 0 
+\end{equation}
+\begin{equation}
+    \alpha = \frac{\langle x'y' \rangle}{\langle x'^2 \rangle}
+\end{equation}
+
+\section{Relação entre $\alpha$ e $\rho$}
+A variância explicada é a fração de variância que o modelo consegue explicar, sendo uma medida da eficiência do modelo. \\
+Essa fração também é chamada de \textbf{skill} e representa a relação entre o modelo e a variância dos dados. 
+
+\begin{equation}
+    Skill = \frac{\langle \hat{y}'^2 \rangle}{\langle y'^2 \rangle}\\
+\end{equation}
+\begin{equation}
+    Skill = \frac{\langle (\alpha x')^2 \rangle}{\langle y'^2 \rangle} \label{12}
+\end{equation}
+
+Substituindo $\alpha$ em (\ref{12}).
+\begin{equation}
+    Skill = \frac{\langle x'y' \rangle^2}{\langle x'^2 \rangle \langle y'^2 \rangle} = \rho_{xy}^2 \label{13}
+\end{equation}
+Determinamos em (\ref{13}) a relação entre $\alpha$ e $\rho$, concluindo que o Coeficiente de Correlação também é uma medida da eficiência do modelo. 
+
+\end{document}
